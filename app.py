@@ -17,7 +17,7 @@ st.write(df.head())
 
 # Histograma de los tipos de vehículos por fabricante
 st.subheader('Histograma de los tipos de vehículos por fabricante')
-fig = px.histogram(df, x='fabricante', color='type', title="tipos de vehículos por fabricante")
+fig = px.histogram(df, x='manufacturer', color='type', title="tipos de vehículos por fabricante")
 st.plotly_chart(fig)
 
 # Histograma de distribución de precios entre fabricantes
@@ -34,13 +34,13 @@ normalized = st.checkbox('Normalized')
 fig = go.Figure()
 histnorm_value = 'percent' if normalized else None
 fig.add_trace(go.Histogram(
-    x=df[df['fabricante'] == manufacturer1]['precio'],
+    x=df[df['manufacturer'] == manufacturer1]['price'],
     name=manufacturer1,
     opacity=0.75,
     histnorm=histnorm_value
 ))
 fig.add_trace(go.Histogram(
-    x=df[df['fabricante'] == manufacturer2]['precio'],
+    x=df[df['manufacter'] == manufacturer2]['price'],
     name=manufacturer2,
     opacity=0.75,
     histnorm=histnorm_value
@@ -64,5 +64,6 @@ color = st.selectbox('Color', df.columns, index=2)
 st.subheader(f'diagrama de dispersion {x_axis} vs {y_axis} colored by {color}')
 fig = px.scatter(df, x=x_axis, y=y_axis, color=color, title=f"{x_axis} vs {y_axis}")
 st.plotly_chart(fig)
+
 
 
