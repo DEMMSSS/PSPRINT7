@@ -1,4 +1,3 @@
-# Import libraries
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -10,8 +9,11 @@ st.title('US Vehicle Advertisement Listings')
 # Read data from csv file vehicles.csv
 df = pd.read_csv('vehicles_us.csv')
 
+# Extraer la marca desde la columna 'model'
+df['manufacturer'] = df['model'].str.split().str[0]
+
 # Show data in the app
-st.write(df)
+st.write(df.head())
 
 # Histogram of the types of vehicles by manufacturer
 st.subheader('Histogram of the types of vehicles by manufacturer')
@@ -56,9 +58,9 @@ st.plotly_chart(fig)
 
 # Scatter plot
 st.subheader('Scatter plot')
-x_axis = st.selectbox('X axis', df.columns, index=1)
-y_axis = st.selectbox('Y axis', df.columns, index=2)
-color = st.selectbox('Color', df.columns, index=3)
+x_axis = st.selectbox('X axis', df.columns, index=0)
+y_axis = st.selectbox('Y axis', df.columns, index=1)
+color = st.selectbox('Color', df.columns, index=2)
 
 st.subheader(f'Scatter plot of {x_axis} vs {y_axis} colored by {color}')
 fig = px.scatter(df, x=x_axis, y=y_axis, color=color, title=f"{x_axis} vs {y_axis}")
