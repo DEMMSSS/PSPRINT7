@@ -40,7 +40,7 @@ fig.add_trace(go.Histogram(
     histnorm=histnorm_value
 ))
 fig.add_trace(go.Histogram(
-    x=df[df['manufacter'] == manufacturer2]['price'],
+    x=df[df['manufacturer'] == manufacturer2]['price'],
     name=manufacturer2,
     opacity=0.75,
     histnorm=histnorm_value
@@ -64,6 +64,7 @@ color = st.selectbox('Color', df.columns, index=2)
 st.subheader(f'diagrama de dispersion {x_axis} vs {y_axis} colored by {color}')
 fig = px.scatter(df, x=x_axis, y=y_axis, color=color, title=f"{x_axis} vs {y_axis}")
 st.plotly_chart(fig)
+
 
 
 
